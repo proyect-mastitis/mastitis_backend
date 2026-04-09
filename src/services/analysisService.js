@@ -5,7 +5,8 @@ const path = require('path');
 const analysisRepository = require('../repositories/analysisRepository');
 const Analysis = require('../models/analysisModel');
 
-const ML_SERVER_URL = process.env.ML_SERVER_URL || 'http://127.0.0.1:8000';
+// LOCAL - const ML_SERVER_URL = process.env.ML_SERVER_URL || 'http://127.0.0.1:8000';
+const ML_SERVER_URL = process.env.ML_SERVER_URL || 'https://mastitis-ml.onrender.com';
 
 
 class AnalysisService {
@@ -27,7 +28,7 @@ class AnalysisService {
 
     const response = await axios.post(`${ML_SERVER_URL}/analyze`, formData, {
       headers: formData.getHeaders(),
-      timeout: 60000,
+      timeout: 180000,
     });
 
     const result = response.data;
